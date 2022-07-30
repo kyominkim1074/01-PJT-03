@@ -2,36 +2,18 @@ import sys
 
 sys.stdin = open("_신용카드만들기2.txt")
 
+#신용카드를 만들기 위한 조건
+# 1. 카드 번호는 3, 4, 5, 6, 9로 시작해야 한다.
+# 2. 카드 번호에 '-'이 들어갈 수 있으며 '-'를 제외한 숫자는 16개이다.
 t = int(input())
+able_num = '34569'
 for case in range(1, t+1):
-    card_num = list(map(int, input().split()))
+    card = ''.join(input().split('-'))
+    # '-'를 기준으로 문자열을 나누고 하나의 문자열로 합친다.
     
-def luhn(number):
-    digit_ = len(number)
-    sum_ = 0
-    is_ = False
-    
-    for i in range(digit_ -1, -1, -1):
-        d = ord(number[i]) - ord('0')
-        
-        if (is_ == True):
-            d = d*2
-        
-        sum_ += d//10
-        sum_ += d%10
-        is_ = not is_
-    if (sum%10 == 0):
-        return True
+    if card[0] not in able_num or len(card) != 16:
+        result = 0
     else:
-        return False
-    
-head_num = ['3', '4', '5', '6', '9']
-    
-for i in range(len(card_num)):
-        if card_num[i] == (i%2 == 0):
-            list_.append(i*2)
-        elif card_num[i] == (i%2!=0):
-            list_.append(i)
-        result = sum(list_)
-        if result%10 != 0:
-            d
+        result = 1
+
+    print(f'#{case} {result}')
